@@ -36,9 +36,7 @@
             {% csrf_token %}
             <div class="col-md-6">
               <label for="firstName" class="form-label">First name</label>
-            <span>
               {{form.first_name}}
-            </span>
               {% comment %} {% render_field form.first_name class='form-control' placeholder='First Name' type='text' %} {% endcomment %}
             </div>
             <div class="col-md-6">
