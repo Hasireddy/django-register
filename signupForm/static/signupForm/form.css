@@ -1,0 +1,74 @@
+
+.main {
+    background: white;
+    border-radius: 30px;
+    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.1);
+    height: 100%; 
+    margin-top:20px;
+}
+
+.rightpic
+{
+    border-radius: 30px;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    margin-left:10px;
+}
+
+.textleft
+{
+    padding: 20px;
+}
+
+.form-label{
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+  font-style: normal;
+ 
+}
+
+.regheader {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-bottom:20px;
+    color: #008686;
+    
+}
+
+.form-control
+{
+    margin-bottom:0.5rem;
+}
+
+.form-control,.form-select,input
+{
+    border-radius: 10px;
+} 
+
+
+.registerbtn {
+    background-color:#93B5D2; 
+    color: white;
+    padding: 8px 8px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.input-group-addon
+{
+    position:relative;     
+}
+
+ i
+{
+    position:absolute;
+    padding-left:10px;
+   padding-top: 16px;
+} 
