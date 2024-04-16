@@ -1,5 +1,6 @@
 from django import forms
 from .models import Register
+from django.core import validators
 
 
 class RegisterForm(forms.ModelForm):
@@ -24,10 +25,10 @@ class RegisterForm(forms.ModelForm):
         }
         widgets = {
             "first_name": forms.TextInput(
-                attrs={"placeholder": "Enter your First name"}
+                attrs={"placeholder": "Enter your First name"},
             ),
             "last_name": forms.TextInput(attrs={"placeholder": "Enter your Last name"}),
-            "username": forms.TextInput(attrs={"placeholder": "Enter your user name"}),
+            "username": forms.TextInput(attrs={"placeholder": "Enter your Username"}),
             "email": forms.EmailInput(attrs={"placeholder": "Enter your Email"}),
             "password1": forms.PasswordInput(
                 attrs={"placeholder": "Enter your Password"}
@@ -41,11 +42,11 @@ class RegisterForm(forms.ModelForm):
         error_messages = {
             "first_name": {
                 "required": "The first name should not be empty",
-                "max_length": "maximum length allowed is 100",
+                "max_length": "maximum length allowed is 20",
             },
             "last_name": {
                 "required": "The Last name should not be empty",
-                "max_length": "maximum length allowed is 100",
+                "max_length": "maximum length allowed is 20",
             },
         }
 
@@ -57,7 +58,7 @@ class RegisterForm(forms.ModelForm):
         #     self.fields[str(field)].widget.attrs.update(
         #         placeholder=f"Enter your {str(field)}",
         #     )
-        # self.fields['first_name'].widget.attrs.update()
+        self.fields["first_name"].widget.attrs.update()
         # Iterate over each form field and add the 'form-control' class
         for field_name, field in self.fields.items():
-            field.widget.attrs.update({"class": "form-control"})
+            field.widget.attrs.update({"class": "form-control"}),
