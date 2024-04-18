@@ -1,5 +1,5 @@
 from django import forms
-from .models import Register
+from signupForm.models import Register
 from django.core import validators
 
 
@@ -61,4 +61,4 @@ class RegisterForm(forms.ModelForm):
         self.fields["first_name"].widget.attrs.update()
         # Iterate over each form field and add the 'form-control' class
         for field_name, field in self.fields.items():
-            field.widget.attrs.update({"class": "form-control"}),
+            field.widget.attrs.update({"class": "form-control"})

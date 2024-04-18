@@ -1,0 +1,41 @@
+{% extends 'signupForm/base.html' %}
+{% block content %}
+{% load static %}
+  <section class="login" id="login">
+    <div class="container">
+      <div class="row d-flex justify-content-center main">
+        <div class="col-md-6 textleft">
+          <div class="heading">
+            <h1 class="regheader">Login</h1>
+            <p>Please fill in this form to login</p>
+          </div>
+          <form class="row g-3 details" method="post" action="/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-md-12">
+              <label for="exampleInputUsername" class="form-label">Username</label>
+              {{form.username}}
+              {% comment %} {% render_field form.username type='text' class='form-control' placeholder='Username' %} {% endcomment %}
+            </div>
+            <div class="col-md-12">
+              <label for="exampleInputPassword" class="form-label">Password</label>
+              {{form.password1}}
+              {% comment %} {% render_field form.password1 type='password' class='form-control' placeholder='Password' %} {% endcomment %}
+            </div>
+            <div class="col-12 pt-3 pb-3">
+              <button type="submit" class="btn registerbtn mt-2">Login</button>
+              <p class="signin text-black pt-5">
+                Already have an account?
+                <a href="">Signup</a>
+              </p>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <img src="{% static 'signupForm/img/sidepic.jpg' %}" alt="responsive-img" class="img-fluid rightpic" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+{% endblock %}
