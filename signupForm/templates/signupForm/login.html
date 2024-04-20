@@ -18,14 +18,14 @@
             </div>
             <div class="col-md-12">
               <label for="exampleInputPassword" class="form-label">Password</label>
-              {{form.password1}}
+              {{form.password}}
               {% comment %} {% render_field form.password1 type='password' class='form-control' placeholder='Password' %} {% endcomment %}
             </div>
             <div class="col-12 pt-3 pb-3">
               <button type="submit" class="btn registerbtn mt-2">Login</button>
               <p class="signin text-black pt-5">
                 Already have an account?
-                <a href="">Signup</a>
+                <a href="{% url 'register' %}">Signup</a>
               </p>
             </div>
           </form>

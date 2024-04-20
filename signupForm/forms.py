@@ -1,6 +1,8 @@
 from django import forms
-from signupForm.models import Register
+from .models import Register
+from .models import Login
 from django.core import validators
+from django.core.exceptions import ValidationError
 
 
 class RegisterForm(forms.ModelForm):
@@ -50,6 +52,20 @@ class RegisterForm(forms.ModelForm):
             },
         }
 
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data["password1"]
+        password2 = cleaned_data["password2"]
+        if not password2:
+            message = "You must confirm your password"
+            self.add_error("password2", message)
+            # raise forms.ValidationError("You must confirm your password") Non field errors
+        if password1 != password2:
+            message = "Your passwords do not match"
+            self.add_error("password2", message)
+            # raise forms.ValidationError("Your passwords do not match")
+            return cleaned_data
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for displaying placeholder
@@ -62,3 +78,10 @@ class RegisterForm(forms.ModelForm):
         # Iterate over each form field and add the 'form-control' class
         for field_name, field in self.fields.items():
             field.widget.attrs.update({"class": "form-control"})
+
+
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = Login
+        # fields = "_all_",
+        fields = ["username", "password"]

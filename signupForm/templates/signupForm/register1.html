@@ -10,6 +10,7 @@
             <p>Please fill in this form to create an account</p>
           </div>
           <form class="row g-3 details" method="post" action="/" enctype="multipart/form-data">
+            {% comment %} {{form.non_field_errors}} {% endcomment %}
             {% csrf_token %}
             {% for field in form %}
             <div {% if field.errors %}errors errorlist{% endif %}>
@@ -22,7 +23,7 @@
               <button type="submit" class="btn registerbtn mt-2">Sign up</button>
               <p class="signin text-black pt-5">
                 Already have an account?
-                <a href="">Login</a>
+                <a href="{% url 'login' %}">Login</a>
               </p>
             </div>
           </form>
