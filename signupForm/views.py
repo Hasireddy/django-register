@@ -19,7 +19,7 @@ def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            registered_values = Register(
+            user = Register(
                 first_name=form.cleaned_data["first_name"],
                 last_name=form.cleaned_data["last_name"],
                 username=form.cleaned_data["username"],
@@ -27,12 +27,18 @@ def register(request):
                 password1=form.cleaned_data["password1"],
                 password2=form.cleaned_data["password2"],
             )
+            # Check if user already exists
+            # user = Register.objects.filter(Email=email)
+            # if user:
+            #     message = "User already exists"
+            #     return render(request, "signupForm/register1.html", {"msg": message})
             # print(form.cleaned_data["first_name"])
             # print(registered_values.first_name)
-            registered_values.save()
+            user.save()
             # if data is valid save it and redirect it to the success page
             # return redirect("/form-submitted/")
-
+            # message = "user registered successfully"
+            # return render(request, "signupForm/login.html", {"msg": message})
             return HttpResponseRedirect("/form-submitted")
         else:
             return render(request, "signupForm/register1.html", {"form": form})
@@ -67,12 +73,3 @@ def login(request):
     else:
         form = LoginForm()
         return render(request, "signupForm/login.html")
-
-
-# validate the form
-# error class not working
-# best way to validate the form LIKE PASSWORDS etc
-# How to improve the view and get cleaned data
-# How to access the cleaned values
-# How to print the submitted form values to the terminal
-# Issues with forms and models folders

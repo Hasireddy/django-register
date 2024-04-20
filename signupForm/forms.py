@@ -50,6 +50,7 @@ class RegisterForm(forms.ModelForm):
                 "required": "The Last name should not be empty",
                 "max_length": "maximum length allowed is 20",
             },
+            "username": {"unique": ("A user with that username already exists.")},
         }
 
     def clean(self):
@@ -65,6 +66,24 @@ class RegisterForm(forms.ModelForm):
             self.add_error("password2", message)
             # raise forms.ValidationError("Your passwords do not match")
             return cleaned_data
+
+    def clean(self):
+        cleaned_data = super().clean()
+        first_name = cleaned_data["first_name"]
+        if not first_name.isalpha():
+            #   raise forms.ValidationError('Please enter a real name.')
+            message = "First name must contain only characters"
+            self.add_error("first_name", message)
+            return cleaned_data
+
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     last_name = cleaned_data["last_name"]
+    #     if not last_name.isalpha():
+    #         #   raise forms.ValidationError('Please enter a real name.')
+    #         message = "Last name must contain only characters"
+    #         self.add_error("last_name", message)
+    #         return cleaned_data
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
