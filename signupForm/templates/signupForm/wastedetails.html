@@ -1,0 +1,63 @@
+{% extends 'signupForm/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="row d-flex justify-content-center main">
+    <div class="col-md-6 textleft">
+        <div class="heading">
+        <h1 class="regheader">Waste details</h1>
+        <p>Please enter the details</p>
+        </div>
+        <form class="row g-3 details" action = "/">
+            {% csrf_token %}
+              <div class="col-md-12">
+                {{form.year}}
+                {% comment %} <label for="year" class="form-label">Year</label>
+                <select id="ddlYears" class="form-select form-control"></select> {% endcomment %}
+              </div>
+              <div class="col-md-12">
+                <label for="waste" class="form-label">Waste type</label>
+                {% comment %} <input type="text" class="form-control" id="waste" name="waste" required> {% endcomment %}
+                {{form.waste_type}}
+              </div>
+              <div class="col-md-12">
+                <label for="disposer" class="form-label">Disposer</label>
+                {% comment %} <input type="text" class="form-control" id="disposer"  name="disposer" required> {% endcomment %}
+                 {{form.disposer}} 
+              </div>
+              <div class="col-md-12">
+                <label for="value" class="form-label">Value</label>
+                {% comment %} <input type="number" class="form-control" id="value"  name="value" required> {% endcomment %}
+                {{form.value}}
+              </div>
+              <div class="col-md-12">
+                <label for="cfactor" class="form-label">Calculationfactor</label>
+                {% comment %} <input type="number" class="form-control" id="cfactor"  name="cfactor" required> {% endcomment %}
+                {{form.calculation_factor}}
+              </div>
+              <div class="col-md-12">
+                <label for="recyclemethod" class="form-label">Recyclingmethod</label>
+                {{form.initial}}
+                <select id="recyclemethod" class="form-select" aria-label="Default select example">
+                    {% for value, label in form.fields.recycling_method.choices %} 
+                      <option value="{{value}}" {% if value == form.initial.recycling_method %} selected {% endif %} >{{label}}</option>
+                    {% endfor %}
+                </select>
+              </div>
+              {% comment %} {{form.recycling_method}} {% endcomment %}
+              <div class="col-md-12">
+                <label for="description" class="form-label">Recyclingdescription</label>
+                {% comment %} <input type="text" class="form-control" id="description"  name="description" required> {% endcomment %}
+                {{form.recycling_description}}
+              </div>
+              <div class="col-12 pt-3 pb-3">
+                <button type="submit" class="btn registerbtn mt-2">Submit</button>
+              </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <img src="{% static 'signupForm/img/sidepic.jpg' %}"
+        alt="responsive-img" class="img-fluid rightpic"/>
+    </div>
+  </div>
+{% endblock %}

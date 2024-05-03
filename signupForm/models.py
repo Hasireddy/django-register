@@ -2,6 +2,8 @@ from django.db import models
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django.contrib.auth.validators import UnicodeUsernameValidator
+import datetime
+from enum import Enum
 
 # Create your models here.
 
@@ -49,3 +51,45 @@ class Register(models.Model):
 class Login(models.Model):
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=10)
+
+
+# class RecyclingChoices(models.TextChoices):
+#     DISPOSAL = "DISPOSAL", "Beseitigung"
+#     MATERIAL = "MATERIAL", "stoffliche Entsorgung"
+#     ENERGETIC = "ENERGETIC", "energetische Entsorgung"
+
+
+class RecyclingChoices(Enum):
+    DISPOSAL = "Beseitigung"
+    MATERIAL = "stoffliche Entsorgung"
+    ENERGETIC = "energetische Entsorgung"
+
+
+# RECYCLING_CHOICES = {
+#     ("ENERGETIC", "energetische Entsorgung"),
+#     ("MATERIAL", "stoffliche Entsorgung"),
+#     ("DISPOSAL", "Beseitigung"),
+# }
+
+from datetime import datetime
+
+CURRENT_YEAR = datetime.now().year
+LAST_FIVE_YEARS = range(CURRENT_YEAR, CURRENT_YEAR - 5, -1)
+
+
+class WasteDetails(models.Model):
+    year = models.IntegerField(
+        max_length=100,
+        choices=[(year, year) for year in LAST_FIVE_YEARS],
+        default=CURRENT_YEAR,
+    )
+    waste_type = models.CharField(max_length=50)
+    disposer = models.CharField(max_length=50)
+    value = models.IntegerField(max_length=20)
+    recycling_method = models.CharField(
+        max_length=50,
+        choices=[(choice.name, choice.value) for choice in RecyclingChoices],
+        # choices=RecyclingChoices.choices,
+        default=RecyclingChoices.MATERIAL.name,
+    )
+    recycle_description = models.CharField(max_length=50)

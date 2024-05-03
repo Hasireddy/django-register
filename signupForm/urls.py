@@ -6,4 +6,5 @@ urlpatterns = [
     path("form-submitted/", views.form_submitted, name="form-submitted"),
     path("home/", views.home, name="home"),
     path("login/", views.login, name="login"),
+    path("waste_details/", views.waste_data, name="waste_details"),
 ]

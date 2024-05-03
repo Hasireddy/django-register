@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 # from . import forms
 from .forms import RegisterForm
 from .forms import LoginForm
+from .forms import WastedataForm
 from .models import Register
 from .models import Login
 
@@ -73,3 +74,8 @@ def login(request):
     else:
         form = LoginForm()
         return render(request, "signupForm/login.html")
+
+
+def waste_data(request):
+    form = WastedataForm()
+    return render(request, "signupForm/wastedetails.html", {"form": form})
